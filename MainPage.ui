@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>826</width>
+    <height>616</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QStackedWidget" name="Pages">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>781</width>
+      <height>561</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>4</number>
+    </property>
+    <widget class="QWidget" name="Home_page">
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(0, 170, 127);</string>
+     </property>
+     <widget class="QTextBrowser" name="homepg_title">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>0</y>
+        <width>511</width>
+        <height>221</height>
+       </rect>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:48pt; text-decoration: underline;&quot;&gt;MindPrint&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:22pt;&quot;&gt;Exploring the uniqueness of individual's brain signals&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="Streams_page">
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 170, 255);</string>
+     </property>
+     <widget class="QTextBrowser" name="streamspg_title">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>0</y>
+        <width>381</width>
+        <height>131</height>
+       </rect>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:48pt;&quot;&gt;Streams&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="Editing_page">
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(170, 170, 255);</string>
+     </property>
+     <widget class="QTextBrowser" name="editpg_title">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>0</y>
+        <width>256</width>
+        <height>131</height>
+       </rect>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:48pt;&quot;&gt;Editing&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="Preprocessing_page">
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 170, 127);</string>
+     </property>
+     <widget class="QTextBrowser" name="prepropg_title">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>0</y>
+        <width>531</width>
+        <height>121</height>
+       </rect>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:48pt;&quot;&gt;Preprocessing&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="DetectingPatterns_page">
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(164, 119, 255);</string>
+     </property>
+     <widget class="QTextBrowser" name="detectpattpg_title">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>0</y>
+        <width>481</width>
+        <height>241</height>
+       </rect>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:48pt;&quot;&gt;Detecting Patterns&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>826</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuMenu">
+    <property name="title">
+     <string>Menu</string>
+    </property>
+    <widget class="QMenu" name="menuStreams">
+     <property name="title">
+      <string>Streams</string>
+     </property>
+     <addaction name="actionSingle"/>
+     <addaction name="action2D_Heatmap"/>
+     <addaction name="action3D_Topology"/>
+     <addaction name="separator"/>
+     <addaction name="actionNeuro_functional"/>
+    </widget>
+    <widget class="QMenu" name="menuEditing">
+     <property name="title">
+      <string>Editing</string>
+     </property>
+     <addaction name="actionCut_Streams"/>
+     <addaction name="actionInsert_Segments"/>
+     <addaction name="actionConcatenate"/>
+     <addaction name="actionUpdate"/>
+     <addaction name="actionCopy"/>
+    </widget>
+    <widget class="QMenu" name="menuPreprocessing">
+     <property name="title">
+      <string>Preprocessing</string>
+     </property>
+     <addaction name="actionBuilt_inFunctions"/>
+     <addaction name="actionExternal_Functions"/>
+     <addaction name="actionBuilt_in_Filter"/>
+     <addaction name="actionExternal_Filter"/>
+     <addaction name="actionDetecting_Artifacts"/>
+     <addaction name="actionRemove_Artifacts"/>
+    </widget>
+    <addaction name="menuStreams"/>
+    <addaction name="menuEditing"/>
+    <addaction name="menuPreprocessing"/>
+    <addaction name="actionDetecting_Patterns"/>
+   </widget>
+   <addaction name="menuMenu"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>LeftToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionGoHome"/>
+   <addaction name="actionGoToStreams"/>
+   <addaction name="actionGoToEdit_Streams"/>
+   <addaction name="actionGoToPreprocess_pg"/>
+   <addaction name="actionGoToDetect_patterns"/>
+  </widget>
+  <action name="actionDetecting_Patterns">
+   <property name="text">
+    <string>Detecting Patterns</string>
+   </property>
+  </action>
+  <action name="actionSingle">
+   <property name="text">
+    <string>Single</string>
+   </property>
+  </action>
+  <action name="action2D_Heatmap">
+   <property name="text">
+    <string>2D Heatmap</string>
+   </property>
+  </action>
+  <action name="action3D_Topology">
+   <property name="text">
+    <string>3D Topology</string>
+   </property>
+  </action>
+  <action name="actionNeuro_functional">
+   <property name="text">
+    <string>Neuro-functional</string>
+   </property>
+  </action>
+  <action name="actionCut_Streams">
+   <property name="text">
+    <string>Cut Streams</string>
+   </property>
+  </action>
+  <action name="actionInsert_Segments">
+   <property name="text">
+    <string>Insert Segments</string>
+   </property>
+  </action>
+  <action name="actionConcatenate">
+   <property name="text">
+    <string>Concatenate</string>
+   </property>
+  </action>
+  <action name="actionUpdate">
+   <property name="text">
+    <string>Update</string>
+   </property>
+  </action>
+  <action name="actionCopy">
+   <property name="text">
+    <string>Copy</string>
+   </property>
+  </action>
+  <action name="actionBuilt_inFunctions">
+   <property name="text">
+    <string>Built-in Functions</string>
+   </property>
+  </action>
+  <action name="actionExternal_Functions">
+   <property name="text">
+    <string>External Functions</string>
+   </property>
+  </action>
+  <action name="actionBuilt_in_Filter">
+   <property name="text">
+    <string>Built-in Filter</string>
+   </property>
+  </action>
+  <action name="actionExternal_Filter">
+   <property name="text">
+    <string>External Filter</string>
+   </property>
+  </action>
+  <action name="actionDetecting_Artifacts">
+   <property name="text">
+    <string>Detect Artifacts</string>
+   </property>
+  </action>
+  <action name="actionRemove_Artifacts">
+   <property name="text">
+    <string>Remove Artifacts</string>
+   </property>
+  </action>
+  <action name="actionGoHome">
+   <property name="icon">
+    <iconset>
+     <normaloff>../OneDrive/Desktop/MindPrint - Capstone/Icons/icons/home.png</normaloff>../OneDrive/Desktop/MindPrint - Capstone/Icons/icons/home.png</iconset>
+   </property>
+   <property name="text">
+    <string>Home</string>
+   </property>
+  </action>
+  <action name="actionGoToStreams">
+   <property name="icon">
+    <iconset>
+     <normaloff>../OneDrive/Desktop/MindPrint - Capstone/Icons/icons/brain.png</normaloff>../OneDrive/Desktop/MindPrint - Capstone/Icons/icons/brain.png</iconset>
+   </property>
+   <property name="text">
+    <string>Streams_Main</string>
+   </property>
+  </action>
+  <action name="actionGoToEdit_Streams">
+   <property name="icon">
+    <iconset>
+     <normaloff>../OneDrive/Desktop/MindPrint - Capstone/Icons/icons/brain--pencil.png</normaloff>../OneDrive/Desktop/MindPrint - Capstone/Icons/icons/brain--pencil.png</iconset>
+   </property>
+   <property name="text">
+    <string>Edit_Streams</string>
+   </property>
+  </action>
+  <action name="actionGoToPreprocess_pg">
+   <property name="icon">
+    <iconset>
+     <normaloff>../OneDrive/Desktop/MindPrint - Capstone/Icons/icons/application--pencil.png</normaloff>../OneDrive/Desktop/MindPrint - Capstone/Icons/icons/application--pencil.png</iconset>
+   </property>
+   <property name="text">
+    <string>Preprocess_pg</string>
+   </property>
+  </action>
+  <action name="actionGoToDetect_patterns">
+   <property name="icon">
+    <iconset>
+     <normaloff>../OneDrive/Desktop/MindPrint - Capstone/Icons/icons/checkerboard.png</normaloff>../OneDrive/Desktop/MindPrint - Capstone/Icons/icons/checkerboard.png</iconset>
+   </property>
+   <property name="text">
+    <string>Detect_patterns</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
