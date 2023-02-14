@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget, QStackedWidget,QTextBrowser,QMenu,QMenuBar,QAction,QStatusBar,QToolBar
+from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget, QStackedWidget,QTextBrowser,QMenu,QMenuBar,QAction,QStatusBar,QToolBar,QPushButton,QRadioButton,QLabel
 from PyQt5 import uic
 import sys
 
@@ -28,7 +28,13 @@ class MindPrint_UI(QMainWindow):
         self.menuPreprocessing = self.findChild(QMenu, "menuPreprocessing")
         self.statusbar = self.findChild(QStatusBar, "statusbar")
         self.toolBar = self.findChild(QToolBar, "toolBar")
+        self.readStreams_widget = self.findChild(QWidget, "readStreams_widget")
 
+        self.read_pushButton = self.findChild(QPushButton, "read_pushButton")
+        #self.radioButton = self.findChild(QRadioButton, "radioButton")
+        #self.radioButton_2 = self.findChild(QRadioButton, "radioButton_2")
+        #self.radioButton_3 = self.findChild(QRadioButton, "radioButton_3")
+        #self.label_2 = self.findChild(QLabel, "label_2")
 
         #set home page as default
         self.Pages.setCurrentIndex(0)
@@ -48,6 +54,9 @@ class MindPrint_UI(QMainWindow):
         #connect "go to detecting patterns" button
         self.actionGoToDetect_patterns.triggered.connect(self.GoDetectPatt_clicked)
 
+        #connect "read in streams" button
+        self.read_pushButton.clicked.connect(self.select)
+
 
 
 
@@ -65,6 +74,21 @@ class MindPrint_UI(QMainWindow):
         self.Pages.setCurrentIndex(3)
     def GoDetectPatt_clicked(self):
         self.Pages.setCurrentIndex(4)
+
+    #function for radio buttons - reading in streams
+    def select(self):
+        if self.radioButton.isChecked():
+            #read in streams - XDF
+            self.label_2.setText("Success for XDF!")
+
+        if self.radioButton_2.isChecked():
+            #read in streams - BDF
+            self.label_2.setText("Success for BDF!")
+
+        if self.radioButton_3.isChecked():
+            #read in streams - CSV
+            self.label_2.setText("Success for CSV!")
+
 
 #Initialize the app
 app = QApplication(sys.argv)
