@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget, QStackedWidget,QTextBrowser,QMenu,QMenuBar,QAction,QStatusBar,QToolBar,QPushButton,QRadioButton,QLabel
 from PyQt5 import uic
 import sys
+import DataVisualization
 
 class MindPrint_UI(QMainWindow):
     def __init__(self):
