@@ -23,6 +23,16 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
         'color': colors['text']
         }),
 
+
+        ##  ##
+    ## TABBED MENU ##
+        ##  ##
+    dcc.Tabs(id="tabs-example-graph", value='tab-1-example-graph', children=[
+        dcc.Tab(label='Tab One', value='tab-1-example-graph'),
+        dcc.Tab(label='Tab Two', value='tab-2-example-graph'),
+    ]),
+    html.Div(id='tabs-content-example-graph')
+
 ])
 
 if __name__ == '__main__':
