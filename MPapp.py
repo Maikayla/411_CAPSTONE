@@ -24,7 +24,7 @@ app.layout = html.Div(
         # Tabbed Menu
         dcc.Tabs(
             id="tabs-with-classes",
-            value='tab-2',
+            value='tab-1',
             parent_className='custom-tabs',
             className='custom-tabs-container',
             children=[
