@@ -1,4 +1,5 @@
 from dash import Dash, html, dcc
+import dash
 import plotly.express as px
 import pandas as pd
 from dash.dependencies import Input, Output
@@ -9,8 +10,8 @@ from dash.dependencies import Input, Output
 filereader.py should be in the same folder as this file.
 As should DataVisualization.py
 
-you will need to pip install mne, plotly, dash_bootstrap_components, pandas, IPython.display
 """
+
 import FileReader
 import DataVisualization
 import mne
@@ -39,13 +40,16 @@ raw_ = DataVisualization.DataVisualization(
 """
 
 #######################################
-app = Dash(__name__)
-# UNCOMMENT BELOW LINE WHEN YOU RESOLVE THE NOTES ABOVE
+app = Dash(__name__, use_pages=True)
+
+
 container_2dHeatmap = raw_.get_2dHeatmap_child(app)
 singlestreamsplot = raw_.graphSingleStreams(
-    'title of my single streams\n plotly graph object', raw_.raw_df.columns[0:5])
+    'Title of My Single Streams\n Plotly Graph Object', raw_.raw_df.columns[0:5])
 othersinglestreamsplot = raw_.graphSingleStreams(
-    'And anotha one', raw_.raw_df.columns[:])
+    'Another Single Streams Plot', raw_.raw_df.columns[:])
+
+
 app.layout = html.Div(
     className='bar',
     children=[
@@ -62,39 +66,18 @@ app.layout = html.Div(
             children='''Exploring the uniqueness of individuals' brains.''',
         ),
 
-        # Tabbed Menu
-        dcc.Tabs(
-            id="tabs-with-classes",
-            value='tab-1',
-            parent_className='custom-tabs',
-            className='custom-tabs-container',
-            children=[
 
-                dcc.Tab(
-                    label='Tab One',
-                    value='tab-1',
-                    className='custom-tab',
-                    selected_className='custom-tab--selected'
-                ),
-                dcc.Tab(
-                    label='Tab Two',
-                    value='tab-2',
-                    className='custom-tab',
-                    selected_className='custom-tab--selected'
-                ),
-                dcc.Tab(
-                    label='Tab Three',
-                    value='tab-3', className='custom-tab',
-                    selected_className='custom-tab--selected'
-                ),
-                dcc.Tab(
-                    label='Tab Four',
-                    value='tab-4',
-                    className='custom-tab',
-                    selected_className='custom-tab--selected'
-                ),
-            ]),
-        html.Div(id='tabs-content-classes')
+
+         html.Div([
+            html.Div(
+                dcc.Link(
+                    f"{page['name']} - {page['path']}", href=page["relative_path"]
+                )
+            )
+            for page in dash.page_registry.values()
+        ]),
+
+        dash.page_container
     ])
 
 
@@ -126,6 +109,7 @@ def render_content(tab):
         return html.Div([
             html.H3('Tab content 4')
         ])
+
 
 
 if __name__ == '__main__':
