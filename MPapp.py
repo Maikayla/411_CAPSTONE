@@ -5,43 +5,28 @@ import pandas as pd
 from dash.dependencies import Input, Output
 
 #######################################
-"""
-    NOTES 
-filereader.py should be in the same folder as this file.
-As should DataVisualization.py
-
-"""
 
 import FileReader
 import DataVisualization
 import mne
 import mpld3
+
 filereader = FileReader.FileReader()
 filereader.setRawData()
-
 filereader.setDataFrame()
 
-# if testing semi-dry-demo-signals.bdf uncomment the below
-###
 filereader.raw_data.rename_channels({'M1': 'TP9'})
 filereader.raw_data.rename_channels({'M2': 'TP10'})
 filereader.raw_data.drop_channels('Status')
 filereader.raw_data.set_montage(
     mne.channels.make_standard_montage('easycap-M1'))
-###
 
 raw_ = DataVisualization.DataVisualization(
     filereader.raw_data, filereader.raw_df)
 
-###
-
-
-"""
-"""
-
 #######################################
-app = Dash(__name__, use_pages=True)
 
+app = Dash(__name__, use_pages=True)
 
 container_2dHeatmap = raw_.get_2dHeatmap_child(app)
 singlestreamsplot = raw_.graphSingleStreams(
@@ -49,6 +34,7 @@ singlestreamsplot = raw_.graphSingleStreams(
 othersinglestreamsplot = raw_.graphSingleStreams(
     'Another Single Streams Plot', raw_.raw_df.columns[:])
 
+#######################################
 
 app.layout = html.Div(
     className='bar',
@@ -66,14 +52,13 @@ app.layout = html.Div(
             children='''Exploring the uniqueness of individuals' brains.''',
         ),
 
-
-
-         html.Div([
+        # NavBar
+        html.Div([
             html.Div(
-                dcc.Link(
-                    f"{page['name']} - {page['path']}", href=page["relative_path"]
-                )
-            )
+                 dcc.Link(
+                     f"{page['name']} - {page['path']}", href=page["relative_path"]
+                 )
+                 )
             for page in dash.page_registry.values()
         ]),
 
@@ -110,6 +95,7 @@ def render_content(tab):
             html.H3('Tab content 4')
         ])
 
+#######################################
 
 
 if __name__ == '__main__':
