@@ -1,7 +1,7 @@
 import dash
 from dash import html, dcc
 
-dash.register_page(__name__, order=2)
+dash.register_page(__name__, order=3, location = "sidebar")
 
 layout = html.Div(children=[
     html.H1(className='preproc_header', children='This is our PREPROCESSING page'),

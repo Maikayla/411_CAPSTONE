@@ -1,7 +1,7 @@
 import dash
 from dash import html, dcc
 
-dash.register_page(__name__, order=1)
+dash.register_page(__name__, location = "sidebar")
 
 layout = html.Div(children=[
     html.H1(className='streams_header', children='This is our Streams page'),
@@ -32,12 +32,12 @@ layout = html.Div(children=[
                     value='tab-3', className='custom-tab',
                     selected_className='custom-tab--selected'
                 ),
-                dcc.Tab(
-                    label='Nothing for now...',
-                    value='tab-4',
-                    className='custom-tab',
-                    selected_className='custom-tab--selected'
-                ),
+                #dcc.Tab(
+                #    label='Nothing for now...',
+                #    value='tab-4',
+                #    className='custom-tab',
+                #    selected_className='custom-tab--selected'
+                #),
             ]),
 
         html.Div(id='tabs-content-classes'),

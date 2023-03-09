@@ -3,6 +3,7 @@ import dash
 import plotly.express as px
 import pandas as pd
 from dash.dependencies import Input, Output
+import dash_bootstrap_components as dbc
 
 #######################################
 """
@@ -40,7 +41,7 @@ raw_ = DataVisualization.DataVisualization(
 """
 
 #######################################
-app = Dash(__name__, use_pages=True)
+app = Dash(__name__, external_stylesheets=[dbc.themes.SLATE, dbc.icons.FONT_AWESOME],)
 
 
 container_2dHeatmap = raw_.get_2dHeatmap_child(app)
@@ -49,36 +50,74 @@ singlestreamsplot = raw_.graphSingleStreams(
 othersinglestreamsplot = raw_.graphSingleStreams(
     'Another Single Streams Plot', raw_.raw_df.columns[:])
 
-
-app.layout = html.Div(
-    className='bar',
-    children=[
-
-        # Header
-        html.H1(
-            className='header',
-            children='MindPrint',
-        ),
-
-        # SubHeader
+#Sidebar navigation - REFERENCE: https://community.plotly.com/t/sidebar-with-icons-expands-on-hover-and-other-cool-sidebars/67318
+sidebar = html.Div(
+    [
         html.Div(
-            className='subHeader',
-            children='''Exploring the uniqueness of individuals' brains.''',
+            [
+                html.H2("Menu", style={"color": "blue"}),
+            ],
+            className="sidebar-header",
         ),
+        html.Hr(),
+        dbc.Nav(
+            [
+                dbc.NavLink(
+                    [html.I(className="fas fa-home me-2"), html.Span("Home")],
+                    href="/",
+                    active="exact",
+                ),
+                dbc.NavLink(
+                    [
+                        html.I(className="fas fa-calendar-alt me-2"),
+                        html.Span("Streams"),
+                    ],
+                    href="/streams",
+                    active="exact",
+                ),
+                dbc.NavLink(
+                    [
+                        html.I(className="fa-solid fa-pen-nib"),
+                        html.Span("Edit"),
+                    ],
+                    href="/edit",
+                    active="exact",
+                ),
+                dbc.NavLink(
+                    [
+                        html.I(className="fa-solid fa-sliders"),
+                        html.Span("Preprocessing"),
+                    ],
+                    href="/preprocessing",
+                    active="exact",
+                ),
+                dbc.NavLink(
+                    [
+                        html.I(className="fa-solid fa-chess-board"),
+                        html.Span("Detecting Patterns"),
+                    ],
+                    href="/detect-patterns",
+                    active="exact",
+                ),
+            ],
+            vertical=True,
+            pills=True,
+        ),
+    ],
+    className="sidebar",
+)
 
 
+app.layout = html.Div([ 
 
-         html.Div([
-            html.Div(
-                dcc.Link(
-                    f"{page['name']} - {page['path']}", href=page["relative_path"]
-                )
-            )
-            for page in dash.page_registry.values()
-        ]),
-
-        dash.page_container
-    ])
+    sidebar,
+    html.Div(
+            [
+                dash.page_container
+            ],
+            className="content",
+        ),
+])
 
 
 @app.callback(Output('tabs-content-classes', 'children'),
