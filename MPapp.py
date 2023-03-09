@@ -6,51 +6,37 @@ from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 
 #######################################
-"""
-    NOTES 
-filereader.py should be in the same folder as this file.
-As should DataVisualization.py
-
-"""
 
 import FileReader
 import DataVisualization
 import mne
 import mpld3
+
 filereader = FileReader.FileReader()
 filereader.setRawData()
-
 filereader.setDataFrame()
 
-# if testing semi-dry-demo-signals.bdf uncomment the below
-###
 filereader.raw_data.rename_channels({'M1': 'TP9'})
 filereader.raw_data.rename_channels({'M2': 'TP10'})
 filereader.raw_data.drop_channels('Status')
 filereader.raw_data.set_montage(
     mne.channels.make_standard_montage('easycap-M1'))
-###
 
 raw_ = DataVisualization.DataVisualization(
     filereader.raw_data, filereader.raw_df)
 
-###
-
-
-"""
-"""
-
 #######################################
-app = Dash(__name__, external_stylesheets=[dbc.themes.SLATE, dbc.icons.FONT_AWESOME],)
 
-
+app = Dash(__name__, external_stylesheets=[
+           dbc.themes.SLATE, dbc.icons.FONT_AWESOME],)
 container_2dHeatmap = raw_.get_2dHeatmap_child(app)
 singlestreamsplot = raw_.graphSingleStreams(
     'Title of My Single Streams\n Plotly Graph Object', raw_.raw_df.columns[0:5])
 othersinglestreamsplot = raw_.graphSingleStreams(
     'Another Single Streams Plot', raw_.raw_df.columns[:])
 
-#Sidebar navigation - REFERENCE: https://community.plotly.com/t/sidebar-with-icons-expands-on-hover-and-other-cool-sidebars/67318
+#######################################
+# Sidebar navigation - REFERENCE: https://community.plotly.com/t/sidebar-with-icons-expands-on-hover-and-other-cool-sidebars/67318
 sidebar = html.Div(
     [
         html.Div(
@@ -66,6 +52,7 @@ sidebar = html.Div(
                     [html.I(className="fas fa-home me-2"), html.Span("Home")],
                     href="/",
                     active="exact",
+
                 ),
                 dbc.NavLink(
                     [
@@ -74,6 +61,7 @@ sidebar = html.Div(
                     ],
                     href="/streams",
                     active="exact",
+
                 ),
                 dbc.NavLink(
                     [
@@ -82,6 +70,7 @@ sidebar = html.Div(
                     ],
                     href="/edit",
                     active="exact",
+
                 ),
                 dbc.NavLink(
                     [
@@ -90,6 +79,7 @@ sidebar = html.Div(
                     ],
                     href="/preprocessing",
                     active="exact",
+
                 ),
                 dbc.NavLink(
                     [
@@ -98,6 +88,7 @@ sidebar = html.Div(
                     ],
                     href="/detect-patterns",
                     active="exact",
+
                 ),
             ],
             vertical=True,
@@ -107,16 +98,17 @@ sidebar = html.Div(
     className="sidebar",
 )
 
+#######################################
 
-app.layout = html.Div([ 
+app.layout = html.Div([
 
     sidebar,
     html.Div(
-            [
-                dash.page_container
-            ],
-            className="content",
-        ),
+        [
+            dash.page_container
+        ],
+        className="content",
+    ),
 ])
 
 
@@ -150,6 +142,6 @@ def render_content(tab):
         ])
 
 
-
+#######################################
 if __name__ == '__main__':
     app.run_server(debug=True)
