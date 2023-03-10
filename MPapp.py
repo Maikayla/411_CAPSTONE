@@ -6,12 +6,6 @@ from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 
 #######################################
-"""
-    NOTES 
-filereader.py should be in the same folder as this file.
-As should DataVisualization.py
-
-"""
 
 import FileReader
 import DataVisualization
@@ -41,7 +35,7 @@ raw_ = DataVisualization.DataVisualization(
 """
 
 #######################################
-app = Dash(__name__, external_stylesheets=[dbc.themes.SLATE, dbc.icons.FONT_AWESOME],)
+app = Dash(__name__, use_pages=True, external_stylesheets=[dbc.themes.SLATE, dbc.icons.FONT_AWESOME],)
 
 
 container_2dHeatmap = raw_.get_2dHeatmap_child(app)
