@@ -11,32 +11,29 @@ layout = html.Div(children=[
         dcc.Tabs(
             id="tabs-with-classes",
             value='tab-1',
-            parent_className='custom-tabs',
-            className='custom-tabs-container',
+            parent_className='slate',
+            className='slate',
             children=[
 
                 dcc.Tab(
                     label='Single Streams',
                     value='tab-1',
-                    className='custom-tab',
-                    selected_className='custom-tab--selected'
+                    className='slate'
                 ),
                 dcc.Tab(
                     label='2D Heat Map',
                     value='tab-2',
-                    className='custom-tab',
-                    selected_className='custom-tab--selected'
+                    className='slate',
                 ),
                 dcc.Tab(
                     label='More Streams',
-                    value='tab-3', className='custom-tab',
-                    selected_className='custom-tab--selected'
+                    value='tab-3', 
+                    className='slate',
                 ),
                 #dcc.Tab(
                 #    label='Nothing for now...',
                 #    value='tab-4',
-                #    className='custom-tab',
-                #    selected_className='custom-tab--selected'
+                #    className='slate',
                 #),
             ]),
 
