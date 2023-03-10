@@ -119,7 +119,7 @@ app.layout = html.Div([
 def render_content(tab):
     if tab == 'tab-1':
         return html.Div([
-            html.H3('Tab content 1'),
+            #html.H3('Tab content 1'),
             dcc.Graph(figure=singlestreamsplot)
 
         ])
@@ -135,12 +135,12 @@ def render_content(tab):
 
     elif tab == 'tab-3':
         return html.Div([
-            html.H3('Tab content 3'),
+            #html.H3('Tab content 3'),
             dcc.Graph(figure=othersinglestreamsplot),
         ])
     elif tab == 'tab-4':
         return html.Div([
-            html.H3('Tab content 4')
+            #html.H3('Tab content 4')
         ])
 
 

@@ -1,7 +1,7 @@
 import dash
 from dash import html, dcc
 
-dash.register_page(__name__, location = "sidebar")
+dash.register_page(__name__, order=1, location = "sidebar")
 
 layout = html.Div(children=[
     html.H1(className='streams_header', children='This is our Streams page'),
