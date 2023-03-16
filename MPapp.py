@@ -3,6 +3,7 @@ import dash
 import plotly.express as px
 import pandas as pd
 from dash.dependencies import Input, Output
+import dash_bootstrap_components as dbc
 
 #######################################
 
@@ -10,23 +11,32 @@ import FileReader
 import DataVisualization
 import mne
 import mpld3
-
 filereader = FileReader.FileReader()
 filereader.setRawData()
+
 filereader.setDataFrame()
 
+# if testing semi-dry-demo-signals.bdf uncomment the below
+###
 filereader.raw_data.rename_channels({'M1': 'TP9'})
 filereader.raw_data.rename_channels({'M2': 'TP10'})
 filereader.raw_data.drop_channels('Status')
 filereader.raw_data.set_montage(
     mne.channels.make_standard_montage('easycap-M1'))
+###
 
 raw_ = DataVisualization.DataVisualization(
     filereader.raw_data, filereader.raw_df)
 
-#######################################
+###
 
-app = Dash(__name__, use_pages=True)
+
+"""
+"""
+
+#######################################
+app = Dash(__name__, use_pages=True, external_stylesheets=[dbc.themes.SLATE, dbc.icons.FONT_AWESOME],)
+
 
 container_2dHeatmap = raw_.get_2dHeatmap_child(app)
 singlestreamsplot = raw_.graphSingleStreams(
@@ -34,36 +44,74 @@ singlestreamsplot = raw_.graphSingleStreams(
 othersinglestreamsplot = raw_.graphSingleStreams(
     'Another Single Streams Plot', raw_.raw_df.columns[:])
 
-#######################################
-
-app.layout = html.Div(
-    className='bar',
-    children=[
-
-        # Header
-        html.H1(
-            className='header',
-            children='MindPrint',
-        ),
-
-        # SubHeader
+#Sidebar navigation - REFERENCE: https://community.plotly.com/t/sidebar-with-icons-expands-on-hover-and-other-cool-sidebars/67318
+sidebar = html.Div(
+    [
         html.Div(
-            className='subHeader',
-            children='''Exploring the uniqueness of individuals' brains.''',
+            [
+                html.H2("Menu", style={"color": "blue"}),
+            ],
+            className="sidebar-header",
         ),
+        html.Hr(),
+        dbc.Nav(
+            [
+                dbc.NavLink(
+                    [html.I(className="fas fa-home me-2"), html.Span("Home")],
+                    href="/",
+                    active="exact",
+                ),
+                dbc.NavLink(
+                    [
+                        html.I(className="fas fa-calendar-alt me-2"),
+                        html.Span("Streams"),
+                    ],
+                    href="/streams",
+                    active="exact",
+                ),
+                dbc.NavLink(
+                    [
+                        html.I(className="fa-solid fa-pen-nib"),
+                        html.Span("Edit"),
+                    ],
+                    href="/edit",
+                    active="exact",
+                ),
+                dbc.NavLink(
+                    [
+                        html.I(className="fa-solid fa-sliders"),
+                        html.Span("Preprocessing"),
+                    ],
+                    href="/preprocessing",
+                    active="exact",
+                ),
+                dbc.NavLink(
+                    [
+                        html.I(className="fa-solid fa-chess-board"),
+                        html.Span("Detecting Patterns"),
+                    ],
+                    href="/detect-patterns",
+                    active="exact",
+                ),
+            ],
+            vertical=True,
+            pills=True,
+        ),
+    ],
+    className="sidebar",
+)
 
-        # NavBar
-        html.Div([
-            html.Div(
-                 dcc.Link(
-                     f"{page['name']} - {page['path']}", href=page["relative_path"]
-                 )
-                 )
-            for page in dash.page_registry.values()
-        ]),
 
-        dash.page_container
-    ])
+app.layout = html.Div([ 
+
+    sidebar,
+    html.Div(
+            [
+                dash.page_container
+            ],
+            className="content",
+        ),
+])
 
 
 @app.callback(Output('tabs-content-classes', 'children'),
@@ -71,7 +119,7 @@ app.layout = html.Div(
 def render_content(tab):
     if tab == 'tab-1':
         return html.Div([
-            html.H3('Tab content 1'),
+            #html.H3('Tab content 1'),
             dcc.Graph(figure=singlestreamsplot)
 
         ])
@@ -87,15 +135,14 @@ def render_content(tab):
 
     elif tab == 'tab-3':
         return html.Div([
-            html.H3('Tab content 3'),
+            #html.H3('Tab content 3'),
             dcc.Graph(figure=othersinglestreamsplot),
         ])
     elif tab == 'tab-4':
         return html.Div([
-            html.H3('Tab content 4')
+            #html.H3('Tab content 4')
         ])
 
-#######################################
 
 
 if __name__ == '__main__':
