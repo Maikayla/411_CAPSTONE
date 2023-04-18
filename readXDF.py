@@ -71,20 +71,6 @@ def read_xdf_retDF(fpath):
         
         info : 
 
-        TODO: Delete below messy notes.
-
-        streams : list[dict] (one dict for each stream)
-        Dicts have the following content:
-        'time_series': Contains the time series as a [#Channels x #Samples] array of the type declared in ['info']['channel_format'].
-        'time_stamps': Contains the time stamps for each sample (synced across streams).
-        'info': Contains the meta-data of the stream (all values are strings).
-        'name': Name of the stream.
-        'type': Content type of the stream ('EEG', 'Events', ...).
-        'channel_format': Value format ('int8', 'int16', 'int32', 'int64', 'float32', 'double64', 'string').
-        'nominal_srate': Nominal sampling rate of the stream (as declared by the device); zero for streams with irregular sampling rate.
-        'effective_srate': Effective (measured) sampling rate of the stream if regular (otherwise omitted).
-        'desc': Dict with any domain-specific meta-data.
-        fileheader : Dict with file header contents in the 'info' field.
     """
     streams, header = pyxdf.load_xdf(fpath)
     
