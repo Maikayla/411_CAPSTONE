@@ -4,6 +4,7 @@ import plotly.express as px
 import pandas as pd
 from dash.dependencies import Input, Output, ClientsideFunction 
 import dash_bootstrap_components as dbc
+import dash_draggable
 
 #######################################
 
@@ -118,13 +119,12 @@ app.clientside_callback(
               Input('tabs-with-classes', 'value'))
 def render_content(tab):
     if tab == 'tab-1':
-        return dbc.Container([
-            #html.Div(eeg_inst.create_new_card(['Fp1', "O2"], "fp1 and o2 channels custom card")),
-            #dcc.Graph(figure=singlestreamsplot),
-            dcc.Graph(figure = eeg_inst.graphStream( "We need to convert this to a draggable, resizable", ['Fp1', "C3", "F3", "O2"])),
-            eeg_inst.create_new_card(['Fp1', "C3", "F3","O2", "QuarX"], "other various channels")
+        return html.Div([ dash_draggable.GridLayout( children=[
+            dcc.Graph(figure = eeg_inst.graphStream( "All Streams", ['Fp1', "C3", "F3", "O2"])),
+            eeg_inst.create_new_card(['Fp1', "C3", "F3","O2", "QuarX"], "Neighborhood 1"),
+            eeg_inst.create_new_card(["C3", "F3","O2"], "Neighborhood 2")
             ]
-        )
+        )])
     elif tab == 'tab-2':
         html.Div([
             html.H3('Hopefully this returns a 2d heatmap'),

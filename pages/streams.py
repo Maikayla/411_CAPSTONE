@@ -4,7 +4,7 @@ from dash import html, dcc
 dash.register_page(__name__, order=1, location = "sidebar")
 
 layout = html.Div(children=[
-    html.H1(className='streams_header', children='This is our Streams page'),
+    html.H1(className='slate', children='View Raw Streams'),
 
     html.Div(children=[
         # Tabbed Menu

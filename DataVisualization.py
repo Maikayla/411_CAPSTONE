@@ -191,10 +191,11 @@ class DataVisualization():
 
     def create_new_card(self, channel_list, title, start = None, stop = None):
         return (html.Div( 
-            dbc.Card([
-                dbc.CardHeader(title),
-                dbc.CardBody(dcc.Graph(figure = self.graphStream(title,channel_list)))
-            ])
+            # dbc.Card([
+            #     dbc.CardHeader(title),
+            #     dbc.CardBody(dcc.Graph(figure = self.graphStream(title,channel_list)))
+            # ])
+            dcc.Graph(figure = self.graphStream(title,channel_list))
             )
             )
         
