@@ -89,7 +89,7 @@ class DataVisualization():
         fig = px.line(thisdf, x = 'index', y = 'value', title = title, facet_row = 'channel', facet_row_spacing = 0.0)
         fig.update_yaxes(matches=None,showticklabels=True)
         fig.for_each_annotation(lambda a: a.update(text=a.text.split("=")[-1]))
-        fig.for_each_annotation(lambda a: a.update(text=a.text.split("=")[1]))
+        fig.for_each_annotation(lambda a: a.update(text=a.text.split("=")[0]))
 
         return fig
         
