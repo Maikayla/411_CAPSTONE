@@ -5,7 +5,7 @@ import pyxdf
 import matplotlib.pyplot as plt
 
 
-import StreamProcessing as sp
+import readXDF as sp
 
 
 class FileReader():

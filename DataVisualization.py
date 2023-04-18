@@ -68,6 +68,7 @@ class DataVisualization():
 
         return fig
     #
+
     def graphStream(self, title, streams, start = None, stop = None):
         ''' graphs specified streams on one plot
         
@@ -81,14 +82,13 @@ class DataVisualization():
         '''
 
         
-        print(streams)
         thisdf = self.raw_df[streams].copy()
         thisdf = thisdf.reset_index().melt(id_vars = 'index', var_name = 'channel', value_name = 'value')
         
 
-        print(thisdf)
         fig = px.line(thisdf, x = 'index', y = 'value', title = title, facet_row = 'channel', facet_row_spacing = 0.0)
         fig.update_yaxes(matches=None,showticklabels=True)
+        fig.for_each_annotation(lambda a: a.update(text=a.text.split("=")[-1]))
         return fig
         
         

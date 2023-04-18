@@ -120,7 +120,6 @@ def render_content(tab):
     if tab == 'tab-1':
         return dbc.Container([
             #html.Div(eeg_inst.create_new_card(['Fp1', "O2"], "fp1 and o2 channels custom card")),
-            html.H3('Tab content 1'),
             #dcc.Graph(figure=singlestreamsplot),
             dcc.Graph(figure = eeg_inst.graphStream( "We need to convert this to a draggable, resizable", ['Fp1', "C3", "F3", "O2"])),
             eeg_inst.create_new_card(['Fp1', "C3", "F3","O2", "QuarX"], "other various channels")
@@ -128,7 +127,6 @@ def render_content(tab):
         )
     elif tab == 'tab-2':
         html.Div([
-            html.H3('Tab content 2'),
             html.H3('Hopefully this returns a 2d heatmap'),
             # UNCOMMENT BELOW LINE WHEN YOU UNCOMMENT THE ONE BEFORE app.layout = ...
             html.Div(container_2dHeatmap, style={
@@ -138,7 +136,6 @@ def render_content(tab):
 
     elif tab == 'tab-3':
         return html.Div([
-            #html.H3('Tab content 3'),
             dcc.Graph(figure=theplotiactuallycareabout),
         ])
     elif tab == 'tab-4':
