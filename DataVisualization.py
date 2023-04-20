@@ -4,14 +4,14 @@ import FileReader
 import mne
 import plotly
 from plotly.subplots import make_subplots
-
+from dash import dcc
 import mpld3
 import plotly.graph_objects as go
 from dash import Dash, html, dcc, Input, Output
 import dash_bootstrap_components as dbc
 import os
 from typing import Tuple, Callable, Union, List
-
+import plotly.express as px
 import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.animation as animation
@@ -22,16 +22,29 @@ from IPython.display import clear_output
 
 
 class DataVisualization():
-    def __init__(self, raw_data, raw_df):
+    def __init__(self, raw_data, raw_df, marker_stream, markers_codes, info ):
         self.raw_data = raw_data
         self.raw_df = raw_df
-        self.times = self.raw_data.times
-    #
+        self.times = raw_data.times
+        self.marker_stream = marker_stream
+        self.markers_codes = markers_codes
+        self.info = info
 
+    #
+    
     @staticmethod
     def return_offline(fig, title):
         plotly.offline.plot(fig, filename=f'OUTPUT/{title}.html')
     #
+    @staticmethod
+    def cardcount(op = 0):
+        #op should either be -1 or 1, 0 to return current count
+        cardcount = 0
+        while True: 
+            cardcount = cardcount + op
+            yield cardcount
+    #
+
 
     def graphSingleStreams(self, title, streams):
         '''graphs specified streams via multiple subplots'''
@@ -56,6 +69,35 @@ class DataVisualization():
         return fig
     #
 
+    def graphStream(self, title, streams, start = None, stop = None):
+        ''' graphs specified streams on one plot
+        
+            Args :
+                title : str
+                    title for graph
+                streams : list(str) or listlike
+                    list of strings containing channel names to graph from self.raw_df
+                times   : tuple(start : float, stop : float)
+                    Start and stop boundaries for plotting (i.e. if we have a sliced sample)
+        '''
+
+        
+        thisdf = self.raw_df[streams].copy()
+        thisdf = thisdf.reset_index().melt(id_vars = 'index', var_name = 'channel', value_name = 'value')
+        
+
+        fig = px.line(thisdf, x = 'index', y = 'value', title = title, facet_row = 'channel', facet_row_spacing = 0.0,
+                      labels={
+                     'index': "EEG Streams",
+                     'value': ""
+                    })
+        fig.update_yaxes(matches=None,showticklabels=True)
+        fig.for_each_annotation(lambda a: a.update(text=a.text.split("=")[-1]))
+
+        return fig
+        
+        
+    #
     def graphSingleStreams_Other(self, title, streams):
         '''graphs specified streams on one plot'''
         fig = go.Figure()  # create fig
@@ -147,61 +189,20 @@ class DataVisualization():
         return self.HeatmapContainerElement
 
 
+    def create_new_card(self, channel_list, title, start = None, stop = None):
+        return (html.Div( 
+            # dbc.Card([
+            #     dbc.CardHeader(title),
+            #     dbc.CardBody(dcc.Graph(figure = self.graphStream(title,channel_list)))
+            # ])
+            dcc.Graph(figure = self.graphStream(title,channel_list))
+            )
+            )
+        
+
+
 def main():
-    filereader = FileReader.FileReader()
-    filereader.setRawData()
-    filereader.setDataFrame()
-
-    # To be used when testing the semi-dry-demo-signals bdf file.
-    ##
-    #
-    filereader.raw_data.rename_channels({'M1': 'TP9'})
-    filereader.raw_data.rename_channels({'M2': 'TP10'})
-    filereader.raw_data.drop_channels('Status')
-    filereader.raw_data.set_montage(
-        mne.channels.make_standard_montage('easycap-M1'))
-    #
-    ##
-    ###
-    ####
-
-    app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
-
-    print(filereader.raw_data.info)
-
-    raw_ = DataVisualization(filereader.raw_data, filereader.raw_df)
-
-    container_2dHeatmap = raw_.get_2dHeatmap_child(app)
-
-    app.layout = html.Div(
-        [
-            html.Div(
-                [
-                    html.H1('Testing out DataVisualization.py'),
-                    html.H2('Text above container'),
-                    html.Div(
-                        container_2dHeatmap,
-                        style={'width': '49%', 'height': '45%',
-                               'display': 'inline-block'}
-                    ),
-                    html.Div(
-                        html.H2('Text to the right of the container'),
-                        style={'width': '49%', 'display': 'inline-block'}
-                    ),
-                    html.Div(
-                        [
-                            html.H2('Above: Callable & Containerized 2D Heatmap')
-                        ]
-                    )
-                ], style={'height': '800px'}),
-            html.Div(
-                [
-                    html.H1('Outermost, lowermost Div Element'),
-
-                ], style={})
-        ])
-
-    app.run_server(debug=True)
+    pass
 
 
 # %%
