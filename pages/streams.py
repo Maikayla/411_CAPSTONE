@@ -1,7 +1,10 @@
 import dash
 from dash import html, dcc
+import dash_draggable
+from MPapp import eeg_inst
 
 dash.register_page(__name__, order=1, location = "sidebar")
+
 
 layout = html.Div(children=[
     html.H1(className='slate', children='View Raw Streams'),
@@ -16,19 +19,46 @@ layout = html.Div(children=[
             children=[
 
                 dcc.Tab(
-                    label='Single Streams',
+                    label='Choose Streams',
                     value='tab-1',
-                    className='slate'
+                    className='slate',
+                     children= [ 
+                             html.Div(children =[
+                                html.Div(id='output_data'),
+                                html.Div(id="hidden-search-value", style={"visibility":"hidden"}),
+                                html.Button('Create', id= 'create_card_button', n_clicks=0, className='slate'),
+                                dcc.Dropdown(['Fp1', 'Fp2', 'F3', 'F4', 'C3', 'C4', 'P3', 'P4', 'O1', 'O2', 'F7', 'F8', 'T7',
+                                            'T8', 'P7', 'P8', 'Fz', 'Cz', 'Pz', 'M1', 'M2', 'AFz', 'CPz', 'POz', 'AccX', 'AccY',
+                                             'AccZ', 'GyroX', 'GyroY', 'GyroZ', 'QuarW', 'QuarX', 'QuarY', 'QuarZ'], placeholder='Select streams:', id='select_stream_dropdown', multi=True)
+                             ]),
+
+                            html.Div([ 
+                                dash_draggable.GridLayout(id='dd-output-container', children=[
+                                        dcc.Graph(figure = eeg_inst.graphStream( "Neighborhood 1", ['Fp1', 'Fp2', 'F3', 'F4', 'C3', 'C4'])),
+                                    ]
+                                )
+                            ])
+                    ]
                 ),
                 dcc.Tab(
                     label='2D Heat Map',
                     value='tab-2',
                     className='slate',
+                    children= [
+                            html.Div([
+                                html.H3('2D Heatmap needs to be fixed')
+                            ])
+                    ]
                 ),
                 dcc.Tab(
-                    label='More Streams',
+                    label='All Streams',
                     value='tab-3', 
                     className='slate',
+                    children= [
+                        html.Div([
+                            #dcc.Graph(figure=theplotiactuallycareabout),
+                        ])
+                    ]
                 ),
                 #dcc.Tab(
                 #    label='Nothing for now...',

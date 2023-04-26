@@ -2,16 +2,15 @@ from dash import Dash, html, dcc
 import dash
 import plotly.express as px
 import pandas as pd
-from dash.dependencies import Input, Output, ClientsideFunction 
+from dash.dependencies import Input, Output, ClientsideFunction, State
 import dash_bootstrap_components as dbc
-import dash_draggable
+import FileReader
+import DataVisualization
+
+
 
 #######################################
 
-import FileReader
-import DataVisualization
-import mne
-import mpld3
 filereader = FileReader.FileReader()
 filereader.setRawData()
 
@@ -21,19 +20,20 @@ filereader.setDataFrame()
 eeg_inst = DataVisualization.DataVisualization(
     filereader.raw_data, filereader.raw_df, filereader.marker_stream, filereader.markers_codes, filereader.info)
 
-###
-
-#######################################
-app = Dash(__name__, use_pages=True, external_scripts=["https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.js"],  external_stylesheets=[dbc.themes.SLATE, dbc.icons.FONT_AWESOME],)
-
 # TODO FIX THE 2d Heatmap
-container_2dHeatmap = eeg_inst.get_2dHeatmap_child(app)
+#container_2dHeatmap = eeg_inst.get_2dHeatmap_child(app)
 
 singlestreamsplot = eeg_inst.graphSingleStreams(
     'Title of My Single Streams\n Plotly Graph Object', eeg_inst.raw_df.columns[0:5])
 othersinglestreamsplot = eeg_inst.graphSingleStreams(
     'Another Single Streams Plot', eeg_inst.raw_df.columns[:])
-theplotiactuallycareabout = eeg_inst.graphStream('Wow, what a plotly plot for plotting', ["Fp1", "Fp2", "F3", "F4", "O2"])
+#theplotiactuallycareabout = eeg_inst.graphStream('All Streams', eeg_inst.raw_df[streams])
+
+#######################################
+
+
+
+app = Dash(__name__, use_pages=True, external_stylesheets=[dbc.themes.SLATE, dbc.icons.FONT_AWESOME],)
 
 
 #Sidebar navigation - REFERENCE: https://community.plotly.com/t/sidebar-with-icons-expands-on-hover-and-other-cool-sidebars/67318
@@ -105,43 +105,30 @@ app.layout = html.Div([
         ),
 ])
 
-app.clientside_callback(
-    ClientsideFunction(namespace="clientside", function_name = "make_draggable"),
-    Output("drag_container","data-drag"),
-    [Input("drag_container","id")],
+
+
+@app.callback(
+    Output("hidden-search-value", "children"),
+    Input('select_stream_dropdown', 'value'),
 )
+# save previous search value in hidden variable 
+def update_hidden_value(value):
+    return value
 
-# NOTE THIS IS ESSENTIALLY THE LAYOUT WE TAKE ON FOR THE TABS PER TAB
-"""
-
-"""
-@app.callback(Output('tabs-content-classes', 'children'),
-              Input('tabs-with-classes', 'value'))
-def render_content(tab):
-    if tab == 'tab-1':
-        return html.Div([ dash_draggable.GridLayout( children=[
-            dcc.Graph(figure = eeg_inst.graphStream( "All Streams", ['Fp1', "C3", "F3", "O2"])),
-            eeg_inst.create_new_card(['Fp1', "C3", "F3","O2", "QuarX"], "Neighborhood 1"),
-            eeg_inst.create_new_card(["C3", "F3","O2"], "Neighborhood 2")
-            ]
-        )])
-    elif tab == 'tab-2':
-        html.Div([
-            html.H3('Hopefully this returns a 2d heatmap'),
-            # UNCOMMENT BELOW LINE WHEN YOU UNCOMMENT THE ONE BEFORE app.layout = ...
-            html.Div(container_2dHeatmap, style={
-                     'width': '49%', 'display': 'inline-block'})
-        ])
-        return #container_2dHeatmap
-
-    elif tab == 'tab-3':
-        return html.Div([
-            dcc.Graph(figure=theplotiactuallycareabout),
-        ])
-    elif tab == 'tab-4':
-        return html.Div([
-            #html.H3('Tab content 4')
-        ])
+@app.callback(
+        Output('dd-output-container', 'children'),
+        Input('create_card_button', "n_clicks"),
+    [
+        State(component_id="dd-output-container", component_property="children"),
+        State(component_id="hidden-search-value", component_property="children")
+    ]
+)
+# submit button logic: use saved value to create new card 
+def add_card_selection(n_clicks, children, streams_list):
+    # submit button pressed
+    if int(n_clicks) > 0:
+      new_card = eeg_inst.create_new_card(streams_list,"New Card Based On Selection")
+    return new_card
 
 
 
