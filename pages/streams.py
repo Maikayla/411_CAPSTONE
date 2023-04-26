@@ -24,16 +24,17 @@ layout = html.Div(children=[
                     className='slate',
                      children= [ 
                              html.Div(children =[
+                                html.Div(id='output_data'),
+                                html.Div(id="hidden-search-value", style={"visibility":"hidden"}),
+                                html.Button('Create', id= 'create_card_button', n_clicks=0, className='slate'),
                                 dcc.Dropdown(['Fp1', 'Fp2', 'F3', 'F4', 'C3', 'C4', 'P3', 'P4', 'O1', 'O2', 'F7', 'F8', 'T7',
                                             'T8', 'P7', 'P8', 'Fz', 'Cz', 'Pz', 'M1', 'M2', 'AFz', 'CPz', 'POz', 'AccX', 'AccY',
-                                             'AccZ', 'GyroX', 'GyroY', 'GyroZ', 'QuarW', 'QuarX', 'QuarY', 'QuarZ'], placeholder='Select streams:', id='select_stream_dropdown', multi=True),
+                                             'AccZ', 'GyroX', 'GyroY', 'GyroZ', 'QuarW', 'QuarX', 'QuarY', 'QuarZ'], placeholder='Select streams:', id='select_stream_dropdown', multi=True)
                              ]),
 
                             html.Div([ 
                                 dash_draggable.GridLayout(id='dd-output-container', children=[
-                                        dcc.Graph(figure = eeg_inst.graphStream( "All Streams", ['Fp1', "C3", "F3", "O2"])),
-                                        eeg_inst.create_new_card(['Fp1', "C3", "F3","O2", "QuarX"], "Neighborhood 1"),
-                                        eeg_inst.create_new_card(["C3", "F3","O2"], "Neighborhood 2")
+                                        dcc.Graph(figure = eeg_inst.graphStream( "Neighborhood 1", ['Fp1', 'Fp2', 'F3', 'F4', 'C3', 'C4'])),
                                     ]
                                 )
                             ])

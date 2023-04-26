@@ -2,7 +2,7 @@ from dash import Dash, html, dcc
 import dash
 import plotly.express as px
 import pandas as pd
-from dash.dependencies import Input, Output, ClientsideFunction 
+from dash.dependencies import Input, Output, ClientsideFunction, State
 import dash_bootstrap_components as dbc
 import FileReader
 import DataVisualization
@@ -105,14 +105,29 @@ app.layout = html.Div([
         ),
 ])
 
-    
+
+
 @app.callback(
-    Output('dd-output-container', 'children'),
-    Input('select_stream_dropdown', 'value')
+    Output("hidden-search-value", "children"),
+    Input('select_stream_dropdown', 'value'),
 )
-def add_card_selection(value):
-    streams_list = {value}
-    new_card = eeg_inst.create_new_card(streams_list,"New Card Based On Selection")
+# save previous search value in hidden variable 
+def update_hidden_value(value):
+    return value
+
+@app.callback(
+        Output('dd-output-container', 'children'),
+        Input('create_card_button', "n_clicks"),
+    [
+        State(component_id="dd-output-container", component_property="children"),
+        State(component_id="hidden-search-value", component_property="children")
+    ]
+)
+# submit button logic: use saved value to create new card 
+def add_card_selection(n_clicks, children, streams_list):
+    # submit button pressed
+    if int(n_clicks) > 0:
+      new_card = eeg_inst.create_new_card(streams_list,"New Card Based On Selection")
     return new_card
 
 
