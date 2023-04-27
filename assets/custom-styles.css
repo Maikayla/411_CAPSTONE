@@ -36,7 +36,19 @@
 .subheader {
   font-size: 1.5em;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-top: 140px;
+  text-align: center;
+}
+
+.logo {
+  width: 1000px;
+  height: 200px;
+  display: block;
+  margin: 0 auto;
+  position: fixed;
+  top: 0;
+  left: 55%;
+  transform: translateX(-50%);
 }
 
 .custom-tabs-container {

@@ -13,7 +13,6 @@ layout = html.Div(
                     src='/assets/logo.png',
                     className='logo'
                 ),
-                html.H1(children='MindPrint'),
             ]
         ),
         html.Div(
