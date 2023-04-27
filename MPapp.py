@@ -8,7 +8,6 @@ import FileReader
 import DataVisualization
 
 
-
 #######################################
 
 filereader = FileReader.FileReader()
@@ -21,27 +20,30 @@ eeg_inst = DataVisualization.DataVisualization(
     filereader.raw_data, filereader.raw_df, filereader.marker_stream, filereader.markers_codes, filereader.info)
 
 # TODO FIX THE 2d Heatmap
-#container_2dHeatmap = eeg_inst.get_2dHeatmap_child(app)
+# container_2dHeatmap = eeg_inst.get_2dHeatmap_child(app)
 
 singlestreamsplot = eeg_inst.graphSingleStreams(
     'Title of My Single Streams\n Plotly Graph Object', eeg_inst.raw_df.columns[0:5])
 othersinglestreamsplot = eeg_inst.graphSingleStreams(
     'Another Single Streams Plot', eeg_inst.raw_df.columns[:])
-#theplotiactuallycareabout = eeg_inst.graphStream('All Streams', eeg_inst.raw_df[streams])
+# theplotiactuallycareabout = eeg_inst.graphStream('All Streams', eeg_inst.raw_df[streams])
 
 #######################################
 
 
+app = Dash(__name__, use_pages=True, external_stylesheets=[
+           dbc.themes.SLATE, dbc.icons.FONT_AWESOME],)
 
-app = Dash(__name__, use_pages=True, external_stylesheets=[dbc.themes.SLATE, dbc.icons.FONT_AWESOME],)
 
-
-#Sidebar navigation - REFERENCE: https://community.plotly.com/t/sidebar-with-icons-expands-on-hover-and-other-cool-sidebars/67318
+# Sidebar navigation - REFERENCE: https://community.plotly.com/t/sidebar-with-icons-expands-on-hover-and-other-cool-sidebars/67318
 sidebar = html.Div(
     [
         html.Div(
             [
-                html.H2("Menu", style={"color": "blue"}),
+                html.Img(
+                    src='/assets/logo2.png',
+                    className='sidebar-logo'
+                ),
             ],
             className="sidebar-header",
         ),
@@ -93,43 +95,44 @@ sidebar = html.Div(
     className="sidebar",
 )
 
-
-app.layout = html.Div([ 
+app.layout = html.Div([
 
     sidebar,
     html.Div(
-            [
-                dash.page_container
-            ],
-            className="content",
-        ),
+        [
+            dash.page_container
+        ],
+        className="content",
+    ),
 ])
-
 
 
 @app.callback(
     Output("hidden-search-value", "children"),
     Input('select_stream_dropdown', 'value'),
 )
-# save previous search value in hidden variable 
+# save previous search value in hidden variable
 def update_hidden_value(value):
     return value
 
+
 @app.callback(
-        Output('dd-output-container', 'children'),
-        Input('create_card_button', "n_clicks"),
+    Output('dd-output-container', 'children'),
+    Input('create_card_button', "n_clicks"),
     [
-        State(component_id="dd-output-container", component_property="children"),
-        State(component_id="hidden-search-value", component_property="children")
+        State(component_id="dd-output-container",
+              component_property="children"),
+        State(component_id="hidden-search-value",
+              component_property="children")
     ]
 )
-# submit button logic: use saved value to create new card 
+# submit button logic: use saved value to create new card
 def add_card_selection(n_clicks, children, streams_list):
     # submit button pressed
     if int(n_clicks) > 0:
-      new_card = eeg_inst.create_new_card(streams_list,"New Card Based On Selection")
+        new_card = eeg_inst.create_new_card(
+            streams_list, "New Card Based On Selection")
     return new_card
-
 
 
 if __name__ == '__main__':
