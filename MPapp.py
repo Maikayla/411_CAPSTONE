@@ -126,13 +126,18 @@ def update_hidden_value(value):
               component_property="children")
     ]
 )
-# submit button logic: use saved value to create new card
 def add_card_selection(n_clicks, children, streams_list):
+    # initialize cards list if it doesn't exist
+    if not children:
+        children = []
+
     # submit button pressed
-    if int(n_clicks) > 0:
+    if n_clicks and n_clicks > 0:
         new_card = eeg_inst.create_new_card(
             streams_list, "New Card Based On Selection")
-    return new_card
+        children.append(new_card)
+
+    return children
 
 
 if __name__ == '__main__':
