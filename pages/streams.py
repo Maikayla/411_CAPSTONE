@@ -7,8 +7,6 @@ dash.register_page(__name__, order=1, location = "sidebar")
 
 
 layout = html.Div(children=[
-    html.H1(className='slate', children='View Raw Streams'),
-
     html.Div(children=[
         # Tabbed Menu
         dcc.Tabs(
