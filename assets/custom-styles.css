@@ -1,4 +1,3 @@
-/* Home Page CSS */
 .bar {
   width: 100%;
   height: 100%;
@@ -37,9 +36,8 @@
 .subheader {
   font-size: 28px;
   font-weight: bold;
-  margin-top: 160px;
+  margin-top: 140px;
   text-align: center;
-  color: white;
 }
 
 .logo {
@@ -61,13 +59,22 @@
   border: 1px solid white;
   max-width: 1000px;
   text-align: center;
-  color: white;
 }
 
 .mindprint-text p {
   font-weight: 500;
   margin-bottom: 1rem;
-  color: white;
+}
+
+.mindprint-text ul {
+  list-style-type: disc;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+}
+
+.mindprint-text li {
+  margin-bottom: 0.5rem;
 }
 
 .custom-tabs-container {
@@ -79,11 +86,68 @@
   border-bottom: 3px solid aqua;
   margin-right: -16px;
 }
-/* End of Home Page*/
 
+.custom-tab {
+  color: black;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-top: 3px solid transparent !important;
+  border-left: 0px !important;
+  border-right: 0px !important;
+  border-bottom: 0px !important;
+  padding: 12px !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+.custom-tab--selected {
+  box-shadow: 1px 1px 0px white;
+  border-left: 1px solid lightgrey !important;
+  border-right: 1px solid lightgrey !important;
+  border-top: 3px solid red !important;
+}
 
+.streams_header {
+  width: 100%;
+  text-align: center;
+  color: rgb(255, 0, 0);
+  margin-bottom: 15px;
+  background-color: black;
+}
 
-/*Sidebar Navigation CSS*/
+.home_header {
+  width: 100%;
+  text-align: center;
+  color: rgb(255, 0, 0);
+  margin-bottom: 15px;
+  background-color: black;
+}
+
+.edit_header {
+  width: 100%;
+  text-align: center;
+  color: rgb(255, 0, 0);
+  margin-bottom: 15px;
+  background-color: black;
+}
+
+.pattern_header {
+  width: 100%;
+  text-align: center;
+  color: rgb(255, 0, 0);
+  margin-bottom: 15px;
+  background-color: black;
+}
+
+.preproc_header {
+  width: 100%;
+  text-align: center;
+  color: rgb(255, 0, 0);
+  margin-bottom: 15px;
+  background-color: black;
+}
+
+/* This creates a skinny side bar fixed to the left of the page */
 .sidebar {
   position: fixed;
   top: 0;
@@ -96,10 +160,12 @@
   transition: width 0.1s ease-in-out;
 }
 
+/* when the user hovers on the sidebar, expand it */
 .sidebar:hover {
   width: 16rem;
 }
 
+/* make sure the contents of the navlink don't wrap when navbar collapses */
 .sidebar .nav-link {
   width: 100%;
   overflow: hidden;
@@ -110,23 +176,29 @@
   margin-bottom: 0.5rem;
 }
 
+/* fix the width of the icons */
 .sidebar .nav-link i {
   width: 1rem;
   margin-right: 0.5rem;
 }
 
+/* hide the navlink labels by default */
 .sidebar .nav-link span {
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.1s ease-in-out;
 }
 
+/* when the sidebar is hovered, reveal the labels */
 .sidebar:hover .nav-link span {
   visibility: visible;
   opacity: 1;
   color: white;
 }
 
+/* container for the sidebar header. make sure the contents don't wrap when
+ * the sidebar is collapsed.
+ */
 .sidebar-header {
   display: flex;
   justify-content: center;
@@ -140,6 +212,7 @@
   height: auto;
 }
 
+/* position the header relative to the logo and hide by default */
 .sidebar-header h2 {
   opacity: 0;
   margin: 0;
@@ -150,59 +223,14 @@
   margin-left: 0.5rem;
 }
 
+/* reveal the header when the sidebar is toggled */
 .sidebar:hover .sidebar-header h2 {
   opacity: 1;
 }
 
+/* position the content relative to the collapsed sidebar */
 .content {
   margin-left: 7rem;
   margin-right: 2rem;
   padding: 2rem 1rem;
-}
-/* End of Sidebar Navigation*/
-
-
-
-/*Streams Page CSS*/
-body {
-  background-color: #f5f5f5;
-  font-family: Arial, sans-serif;
-}
-
-div.slate {
-  padding: 20px;
-  margin: 10px;
-  border: 1px solid #ddd;
-}
-
-div.slate > * {
-  margin: 10px;
-}
-
-div.slate select {
-  border: 1px solid #ddd;
-  padding: 5px;
-}
-
-div.slate button {
-  border: 1px solid #ddd;
-  padding: 5px 10px;
-  background-color: #fff;
-  color: #333;
-  cursor: pointer;
-}
-
-div.slate button:hover {
-  background-color: #eee;
-}
-
-div.slate .graph-container {
-  border: 1px solid #ddd;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-}
-
-div.slate .tab {
-  color: #333;
-  font-size: 16px;
 }

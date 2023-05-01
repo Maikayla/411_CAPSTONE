@@ -1,7 +1,7 @@
 import dash
 from dash import html, dcc
 
-dash.register_page(__name__, path='/')
+dash.register_page(name, path='/')
 
 layout = html.Div(
     style={'text-align': 'center'},
@@ -17,10 +17,12 @@ layout = html.Div(
         ),
         html.Div(
             className='subheader',
+            style={'font-weight': 'bold', 'font-size': '20px'},
             children="Exploring the uniqueness of individuals' brains"
         ),
         html.Div(
             className='mindprint-text',
+            style={'font-size': '16px'},
             children=[
                 html.P('MindPrint is a research project at SELU, headed by Dr. Ömer Soysal that explores uniqueness of individuals’ brain signals and aims to:'),
                 html.P(
