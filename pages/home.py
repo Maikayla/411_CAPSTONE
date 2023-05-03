@@ -1,7 +1,7 @@
 import dash
 from dash import html, dcc
 
-dash.register_page(name, path='/')
+dash.register_page(__name__, path='/')
 
 layout = html.Div(
     style={'text-align': 'center'},
