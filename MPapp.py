@@ -116,29 +116,6 @@ def update_hidden_value(value):
     return value
 
 
-# @app.callback(
-#     Output('dd-output-container', 'children'),
-#     Input('create_card_button', "n_clicks"),
-#     [
-#         State(component_id="dd-output-container",
-#               component_property="children"),
-#         State(component_id="hidden-search-value",
-#               component_property="children")
-#     ]
-# )
-# def add_card_selection(n_clicks, children, streams_list):
-#     # initialize cards list if it doesn't exist
-#     if not children:
-#         children = []
-
-#     # submit button pressed
-#     if n_clicks and n_clicks > 0:
-#         new_card = eeg_inst.create_new_card(
-#             streams_list, "New Card Based On Selection")
-#         children.append(new_card)
-
-#     return children
-
 @app.callback(
     Output('dd-output-container', 'children'),
     Input('create_card_button', 'n_clicks'),
