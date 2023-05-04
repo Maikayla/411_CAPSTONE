@@ -17,12 +17,13 @@ layout = html.Div(
         ),
         html.Div(
             className='subheader',
-            style={'font-weight': 'bold', 'font-size': '20px', 'text-align': 'center'},
+            style={'font-weight': 'bold',
+                   'font-size': '24px', 'text-align': 'center'},
             children="Exploring the uniqueness of individuals' brains"
         ),
         html.Div(
             className='mindprint-text',
-            style={'font-size': '16px'},
+            style={'font-size': '22px'},
             children=[
                 html.P('MindPrint is a research project at SELU, headed by Dr. Ömer Soysal that explores uniqueness of individuals’ brain signals and aims to:'),
                 html.P(
