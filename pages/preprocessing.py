@@ -17,7 +17,7 @@ layout = html.Div(
         ),
         html.Div(
             className='subheader',
-            style={'font-weight': 'bold', 'font-size': '70px', 'text-align': 'center'},
+            style={'font-weight': 'bold', 'font-size': '70px', 'text-align': 'center'}, #Change font back to 20px if it looks goofy on your computer. -Bren
             children="Preprocessing Page."
         ),
         html.Div(
