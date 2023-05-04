@@ -1,7 +1,7 @@
 import dash
 from dash import html, dcc
 
-dash.register_page(name, path='/')
+dash.register_page(__name__, path='/')
 
 layout = html.Div(
     style={'text-align': 'center'},
@@ -17,7 +17,7 @@ layout = html.Div(
         ),
         html.Div(
             className='subheader',
-            style={'font-weight': 'bold', 'font-size': '20px'},
+            style={'font-weight': 'bold', 'font-size': '20px', 'text-align': 'center'},
             children="Exploring the uniqueness of individuals' brains"
         ),
         html.Div(
@@ -26,9 +26,9 @@ layout = html.Div(
             children=[
                 html.P('MindPrint is a research project at SELU, headed by Dr. Ömer Soysal that explores uniqueness of individuals’ brain signals and aims to:'),
                 html.P(
-                    '- Develop a system to explore specific characteristics of individuals’ brain signals'),
+                    '- Develop a system to explore specific characteristics of individuals’ brain signals.'),
                 html.P(
-                    '- Build and implement a curriculum to train the workforce for computational aspects of brain signals')
+                    '- Build and implement a curriculum to train the workforce for computational aspects of brain signals.')
             ]
         )
     ]
