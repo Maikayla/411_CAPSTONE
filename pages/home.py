@@ -17,8 +17,8 @@ layout = html.Div(
         ),
         html.Div(
             className='subheader',
-            style={'font-weight': 'bold', 'font-size': '20px'},
-            children="Exploring the uniqueness of individuals' brains"
+            style={'font-weight': 'bold', 'font-size': '70px', 'text-align': 'center'}, #Change font back to 20px if it looks goofy on your computer. -Bren
+            children="Exploring the uniqueness of individuals' brains."
         ),
         html.Div(
             className='mindprint-text',
@@ -26,9 +26,9 @@ layout = html.Div(
             children=[
                 html.P('MindPrint is a research project at SELU, headed by Dr. Ömer Soysal that explores uniqueness of individuals’ brain signals and aims to:'),
                 html.P(
-                    '- Develop a system to explore specific characteristics of individuals’ brain signals'),
+                    '- Develop a system to explore specific characteristics of individuals’ brain signals.'),
                 html.P(
-                    '- Build and implement a curriculum to train the workforce for computational aspects of brain signals')
+                    '- Build and implement a curriculum to train the workforce for computational aspects of brain signals.')
             ]
         )
     ]
