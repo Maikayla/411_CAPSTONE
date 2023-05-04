@@ -26,7 +26,7 @@ layout = html.Div(
             style={'font-size': '22px'},
             children=[
                 html.P(
-                    'The present preprocessing page shall be employed at a later date when the Mind Print team deems it suitable for use. Its primary purpose is to facilitate the cleansing and refinement of data to enable the discovery of patterns and correlations within machine learning models.'),
+                    'The "Preprocessing" page shall be employed at a later date when the Mind Print team deems it suitable for use. Its primary purpose is to facilitate the cleansing and refinement of data to enable the discovery of patterns and correlations within machine learning models.'),
             ]
         )
     ]
