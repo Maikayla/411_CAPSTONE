@@ -17,8 +17,8 @@ layout = html.Div(
         ),
         html.Div(
             className='subheader',
-            style={'font-weight': 'bold', 'font-size': '70px', 'text-align': 'center'}, #Change font back to 20px if it looks goofy on your computer. -Bren
-            children="Exploring the uniqueness of individuals' brains."
+            style={'font-weight': 'bold', 'font-size': '20px', 'text-align': 'center'},
+            children="Exploring the uniqueness of individuals' brains"
         ),
         html.Div(
             className='mindprint-text',

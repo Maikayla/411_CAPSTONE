@@ -17,20 +17,18 @@ layout = html.Div(
         ),
         html.Div(
             className='subheader',
-            style={'font-weight': 'bold', 'font-size': '70px', 'text-align': 'center'}, #Change font back to 20px if it looks goofy on your computer. -Bren
-            children="Editing Page."
+            style={'font-weight': 'bold', 'font-size': '20px', 'text-align': 'center'},
+            children="Editing Page"
         ),
         html.Div(
             className='mindprint-text',
             style={'font-size': '16px'},
             children=[
-                html.P('This editing page will be used in the future once the Mind Print team is ready for it. They will use it to:'),
+                html.P('This editing page will be used in the future once the Mind Print team is ready for it. It will be used to:'),
                 html.P(
-                    '- Editing Reason Number 1.'),
+                    '- Segment streams'),
                 html.P(
-                    '- Editing Reason Number 2.'),
-                html.P(
-                    '- Editing Reason Number 3.')
+                    '- View different data sets at the same time interval')
             ]
         )
     ]

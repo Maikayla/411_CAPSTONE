@@ -17,20 +17,16 @@ layout = html.Div(
         ),
         html.Div(
             className='subheader',
-            style={'font-weight': 'bold', 'font-size': '70px', 'text-align': 'center'}, #Change font back to 20px if it looks goofy on your computer. -Bren
-            children="Preprocessing Page."
+            style={'font-weight': 'bold', 'font-size': '20px', 'text-align': 'center'},
+            children="Preprocessing Page"
         ),
         html.Div(
             className='mindprint-text',
             style={'font-size': '16px'},
             children=[
-                html.P('This preprocessing page will be used in the future once the Mind Print team is ready for it. They will use it to:'),
+                html.P('This preprocessing page will be used in the future once the Mind Print team is ready for it. It will be used to:'),
                 html.P(
-                    '- Preprocessing Reason Number 1.'),
-                html.P(
-                    '- Preprocessing Reason Number 2.'),
-                html.P(
-                    '- Preprocessing Reason Number 3.')
+                    '- Clean and prepare data for use in finding trends in machine learning models')
             ]
         )
     ]
